@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/marcelojunin/portal_noticias/issues"
   },
-  "homepage": "https://github.com/marcelojunin/portal_noticias#readme"
+  "homepage": "https://github.com/marcelojunin/portal_noticias#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
