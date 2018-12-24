@@ -12,7 +12,7 @@ module.exports = function(app) {
     
         var query = 'SELECT * FROM noticias';
         connection.query(query, function(error, result){
-            res.send(result);
+            res.render('noticias/noticias', {noticias : result});
         });
     });
 }
