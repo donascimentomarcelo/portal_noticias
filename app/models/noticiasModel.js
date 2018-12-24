@@ -10,5 +10,9 @@ module.exports = function() {
         connection.query(query, callback);
     };
 
+    this.salvarNoticia = function(noticia, connection, callback) {
+        connection.query('insert into noticias set ?', noticia, callback);
+    }
+
     return this;
 }
