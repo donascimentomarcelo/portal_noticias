@@ -15,3 +15,12 @@ module.exports.noticia = function(application, res, req) {
         res.render('noticias/noticia', {noticia : result});
     });
 }
+
+module.exports.ultimaNoticia = function(application, res, req) {
+    var connection = application.config.db_connection();
+    var dao = new application.app.models.NoticiasDAO(connection);
+
+    dao.ultimaNoticia(function(error, result){
+        res.json({ result });
+    })
+}

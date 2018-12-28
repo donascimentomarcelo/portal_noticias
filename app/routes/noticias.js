@@ -6,4 +6,8 @@ module.exports = function(application) {
     application.get('/noticia', function(req, res) {
         application.app.controllers.noticiasController.noticia(application, res, req);
     });
+
+    application.get('/ultimas-noticias', function(req, res) {
+        application.app.controllers.noticiasController.ultimaNoticia(application, res, req);
+    });
 }
