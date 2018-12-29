@@ -1,14 +1,18 @@
-var mysql = require('mysql');
+var mongo = require('mongodb');
 
-var connection = function() {
-    return mysql.createConnection({
-        host : 'localhost',
-        user : 'root',
-        password : '',
-        database : 'portal_noticias',
-    });
+var mongoDB = function(){
+    var db = new mongo.Db(
+        'sistema_noticias',
+        new mongo.Server(
+            'localhost',
+            27017,
+            {}
+        ),
+        {}
+    );
+
+    return db;
 }
-
-module.exports = function() {
-    return connection;
+module.exports = function(){
+   return mongoDB;
 }
