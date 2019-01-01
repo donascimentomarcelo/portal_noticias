@@ -4,5 +4,5 @@ module.exports.save = function(application, req, res) {
     var connection = application.config.db_connection;
     var UserDAO = new application.app.models.UsersDAO(connection);
 
-    UserDAO.save(dataForm);
+    UserDAO.save(dataForm, res);
 }
