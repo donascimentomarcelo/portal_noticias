@@ -17,6 +17,21 @@ UsersDao.prototype.save = function(user, res) {
     });
 }
 
+UsersDao.prototype.find = function(res) {
+    this.connection.open(function(error, mongoClient) {
+        mongoClient.collection('users',function(error, collection) {
+            collection.find().toArray(function(err, result){
+                if (error){
+                    res.json(error);
+                } else {
+                    res.json(result);
+                }
+                mongoClient.close();
+            })
+        });
+    });
+}
+
 module.exports = function() {
 
     return UsersDao;
