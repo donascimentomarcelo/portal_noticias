@@ -10,4 +10,8 @@ module.exports = function(application) {
     application.get('/user/:id', function(req, res) {
         application.app.controllers.usersController.findOne(application, req, res);
     });
+
+    application.put('/user/:id', function(req, res) {
+        application.app.controllers.usersController.update(application, req, res);
+    });
 }

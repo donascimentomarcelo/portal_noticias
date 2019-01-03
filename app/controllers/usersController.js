@@ -15,6 +15,11 @@ module.exports.findOne = function(application, req, res) {
     UserDAO.findOne(res, req.params.id);
 }
 
+module.exports.update = function(application, req, res) {
+    const UserDAO = getConnection(application);
+    UserDAO.update(res, req);
+}
+
 function getConnection(application) {
     const connection = application.config.db_connection;
     const UserDAO = new application.app.models.UsersDAO(connection);

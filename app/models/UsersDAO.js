@@ -49,6 +49,26 @@ UsersDao.prototype.findOne = function(res, id) {
     });
 }
 
+UsersDao.prototype.update = function(res, req) {
+    this.connection.open(function(error, mongoClient) {
+        mongoClient.collection('users', function(error, collection) {
+            collection.update(
+                { _id : objectId(req.params.id)},
+                { $set : { name: req.body.name }},
+                {},
+                function(error, result) {
+                    if (error){
+                        res.json(error);
+                    } else {
+                        res.json(result);
+                    }
+                    mongoClient.close();  
+                }
+            );
+        });
+    });
+}
+
 module.exports = function() {
 
     return UsersDao;
