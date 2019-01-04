@@ -14,4 +14,8 @@ module.exports = function(application) {
     application.put('/user/:id', function(req, res) {
         application.app.controllers.usersController.update(application, req, res);
     });
+
+    application.delete('/user/:id', function(req, res) {
+        application.app.controllers.usersController.destroy(application, req, res);
+    });
 }

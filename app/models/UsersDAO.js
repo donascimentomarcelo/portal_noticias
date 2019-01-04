@@ -69,6 +69,24 @@ UsersDao.prototype.update = function(res, req) {
     });
 }
 
+UsersDao.prototype.destroy = function(res, req) {
+    this.connection.open(function(error, mongoClient) {
+        mongoClient.collection('users', function(error, collection) {
+            collection.remove(
+                { _id : objectId(req.params.id)},
+                function(error, result) {
+                    if (error){
+                        res.json(error);
+                    } else {
+                        res.json(result);
+                    }
+                    mongoClient.close();  
+                }
+            );
+        });
+    });
+}
+
 module.exports = function() {
 
     return UsersDao;

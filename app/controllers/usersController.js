@@ -20,6 +20,11 @@ module.exports.update = function(application, req, res) {
     UserDAO.update(res, req);
 }
 
+module.exports.destroy = function(application, req, res) {
+    const UserDAO = getConnection(application);
+    UserDAO.destroy(res, req);
+}
+
 function getConnection(application) {
     const connection = application.config.db_connection;
     const UserDAO = new application.app.models.UsersDAO(connection);
