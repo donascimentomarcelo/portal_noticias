@@ -87,6 +87,26 @@ UsersDao.prototype.destroy = function(res, req) {
     });
 }
 
+UsersDao.prototype.saveImage = function(data, res, req) {
+    this.connection.open(function(error, mongoClient) {
+        mongoClient.collection('users', function(error, collection) {
+            collection.update(
+                { _id : objectId(data._id)},
+                { $set : { url_image: data.url_image }},
+                {},
+                function(error, result) {
+                    if (error){
+                        res.json(error);
+                    } else {
+                        res.json(result);
+                    }
+                    mongoClient.close();  
+                }
+            );
+        });
+    });
+}
+
 module.exports = function() {
 
     return UsersDao;

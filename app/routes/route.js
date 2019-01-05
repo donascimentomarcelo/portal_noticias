@@ -18,4 +18,8 @@ module.exports = function(application) {
     application.delete('/user/:id', function(req, res) {
         application.app.controllers.usersController.destroy(application, req, res);
     });
+
+    application.post('/user/upload', function(req, res) {
+        application.app.controllers.usersController.upload(application, req, res);
+    });
 }
