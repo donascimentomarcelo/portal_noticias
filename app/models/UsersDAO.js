@@ -107,6 +107,27 @@ UsersDao.prototype.saveImage = function(data, res, req) {
     });
 }
 
+UsersDao.prototype.authenticate = function(user, req, res) {
+    console.log(user);
+    this.connection.open(function(error, mongoClient) {
+        mongoClient.collection('users', function(error, collection) {
+            collection.find(user).toArray(function(error, result){
+                console.log(result[0])
+                if(result[0] != undefined) {
+                    req.session.authorized = true;
+                }
+
+                if (req.session.authorized) {
+                    res.send('User authorized');
+                } else {
+                    res.send('access denied');
+                }
+            });
+            mongoClient.close();
+        });
+    });
+}
+
 module.exports = function() {
 
     return UsersDao;
