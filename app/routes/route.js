@@ -26,4 +26,8 @@ module.exports = function(application) {
     application.post('/login', function(req, res) {
         application.app.controllers.loginController.auth(application, req, res);
     });
+
+    application.post('/logout', function(req, res) {
+        application.app.controllers.loginController.logout(application, req, res);
+    });
 }
